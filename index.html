@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrients</title>
+</head>
+<body style="margin: 0px; background-image: url(back.png); background-repeat: no-repeat; background-size: cover; position: relative;">
+    <script src="particle.js" defer></script>
+    <script src="main.js" defer></script>
+    <div style="position: relative;">
+        <div style="text-align: center; width: 100%; color: black; font-family: monospace; font-size: 18px; display: flex; justify-content: center; flex-direction: column; align-items: center;">
+            <h2 style="margin-top: 5vh;">Cell Absorption Simulation</h2>
+        </div>
+        <div style="display: flex; width: 100%; justify-content: center; margin-top: 2vh; margin-bottom: 2vh;">
+            <canvas width="1000" height="1000" style="width: 60vh; height: 60vh; border: 2px solid gray;" id="can"></canvas>
+        </div>
+        <div style="text-align: center; width: 100%; color: black; font-family: monospace; font-size: 18px; display: flex; justify-content: center; flex-direction: column; align-items: center;">
+            <div style="width: 800px; text-align: left; margin-top: 10px;">
+                <h2>Concentration of nutrients inside and outside of the cell overtime:</h2>
+                Brown: Concentration outside of cell
+                <br>
+                Green: Concentration inside of cell
+            </div>
+            <div style="display: flex; width: 100%; justify-content: center; margin-top: 2vh; margin-bottom: 2vh;">
+                <canvas width="600" height="200" style="width: 60vh; height: 20vh; border: 2px solid gray;" id="graph"></canvas>
+            </div>
+            <div style="display: flex;">
+                <div>[N] Outside Cell:</div><div id="outside" style="padding-right: 40px;"></div>
+                <div>[N] Inside Cell:</div><div id="inside"></div>
+            </div>
+            <div style="width: 800px; text-align: left; margin-top: 10px;">
+                <h2>Controls:</h2>
+                <ul>
+                    <li>Refresh the page to restart the simulation</li>
+                    <li>Press space to pause the simulation</li>
+                    <li>Click to place more molecules into the simulation</li>
+                </ul>
+                <h2>Description:</h2>
+                <ul>
+                    <li>White molecules represent nutrients and minerals in the soil</li>
+                    <li>Brown molecules represent other molecules in the rhizosphere</li>
+                    <li>The cell's membrane is semi-permeable, meaning only nutrients are able to move freely through it</li>
+                    <li>Overtime, and as the amount of nutrients increase, the concentration inside the cell will increase and stablize such that the concentration of molecules outside of the cell balances with the concentration of molecules inside of the cell</li>
+                    <li>Even when nutrients enter the system on the opposite side of the cell, an equilibrium will eventually be established</li>
+                    <li>In real life, plants will consume and transport nutrients away. This will lower the concentration of nutrients inside of the cell and allow for more nutrients to enter the cell</li>
+                </ul>
+                <h2>Chemistry:</h2>
+                <ul>
+                    <li>This equilibrium is called passive diffusion and can be represented loosely by the following equation:</li>
+                    <li>N<sub>inside</sub> ⇆ N<sub>outside</sub></li>
+                    <li>Since the concentration of molecules inside of the cell will be equal to the concentration of molecules outside of the cell at equilibruim, the K<sub>eq</sub> is equal to 1</li>
+                    <li>Following Le Chatelier's Principle:</li>
+                    <ul>
+                        <li>When there is a higher concentration of molecules outside of the cell, the equilibrium will shift left. This means that there will be more molecules that enter the cell than molecules that leave the cell</li>    
+                        <li>When there is a lower concentration of molecules inside of the cell, the equilibrium will shift right. This means that there will be more molecules that leave the cell than molecules that enter the cell</li>    
+                    </ul>
+                    <li>In many cases, this passive diffusion force is not efficient enough to sustain a plant's needs. Some nutrients are found in much higher concentrations inside of the cell, and so active transportation methods are required</li>
+                </ul>
+                <h2>Application:</h2>
+                <ul>
+                    <li>In soybean plants, iron deficiency is a critical problem which influences agricultural efficiency</li>
+                    <li>Soybean plants are unable to utilize the insoluble Iron(III) Oxide which is present in most soils</li>
+                    <li>In order to access this iron source, soybean plants release hydrogen ions. This causes the pH of the soil to lower, which causes the oxide to become freed from the iron:</li>
+                    <ul>
+                        <li>Fe<sub>2</sub>O<sub>3</sub> + 6H<sup>+</sup> -> 2Fe<sup>3+</sup> + 3H<sub>2</sub>O</li>
+                    </ul>
+                    <li>Iron(III) is still unusable though, so the soybean uses a membrane-bound reductase to give an electron and create Iron(II):</li>
+                    <ul>
+                        <li>Fe<sup>3+</sup> + e<sup>-</sup> -> Fe<sup>2+</sup></li>
+                    </ul>
+                    <li>Finally, the Iron(II) can be absorbed by a divalent metal transporter in the cell membrane.</li>
+                    <li>In terms of equilibrium:</li>
+                    <ul>
+                        <li>When the cell transports iron elsewhere, or is iron deficient, it signals for more divalent metal transporters to be created on the cell membrane. This causes more Iron(II) to be transported into the cell</li>
+                        <li>When the cell has elevated concentrations of iron or other metal ions, less hydrogen ions are released into the soil. This causes the concentration of usable Iron(II) ions outside of the cell to decrease overtime (as it is brought into the cell but not replaced)</li>
+                    </ul>
+                </ul>
+                <h2>References:</h2>
+                <!-- 
+                    https://www.academia.edu/download/31189575/DK2478ch12.pdf
+                    https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2764373/#:~:text=In%20fact%2C%20the%20transgenic%20overexpression,tolerance%20to%20Fe%2Dlimiting%20conditions.&text=Once%20reduced%2C%20Fe%20(II),the%20divalent%20metal%20transporter%20AtIRT1.
+                    https://books.google.ca/books?hl=en&lr=&id=svPD2YEo5C4C&oi=fnd&pg=PA73&dq=nutrients+uptake&ots=hUmBTNUZjB&sig=GNTQX1yEvrBchA2ikAJCuEIqgTM
+                 -->
+                <ul>
+                    <li>Alam, S. M. (1999). Nutrient uptake by plants under stress conditions. Handbook of plant and crop stress, 2, 285-313.</li>
+                    <li>Morrissey, J., & Guerinot, M. L. (2009). Iron uptake and transport in plants: the good, the bad, and the ionome. Chemical reviews, 109(10), 4553–4567. <a href="https://doi.org/10.1021/cr900112r">https://doi.org/10.1021/cr900112r</a></li>
+                    <li>Reid, R., & Hayes, J. (2003). Mechanisms and control of nutrient uptake in plants. International review of cytology, 229(3), 73-114.</li>
+                </ul>
+                <hr style="margin-top: 15vh; border: 1px solid black;">
+                <div style="text-align: center; margin-bottom: 2vh; margin-top: 2vh;">Daniel Morgan 2024 - Cell Absorption Simulation</div>
+            </div>
+        </div>
+    </div>
+</body>
+<style>
+    li {
+        margin-bottom: 1rem;
+    }
+</style>
+</html>
